@@ -15,7 +15,7 @@ class Transaction extends Model
      * @var string[]
      */
     protected $fillable = [
-        'user_id',
+        'users_id',
         'address',
         'payment',
         'total_price',
@@ -25,11 +25,11 @@ class Transaction extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'users_id', 'id');
     }
 
     public function items()
     {
-        return $this->hasMany(TransactionItem::class, 'transaction_id', 'id');
+        return $this->hasMany(TransactionItem::class, 'transactions_id', 'id');
     }
 }

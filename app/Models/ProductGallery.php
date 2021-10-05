@@ -17,17 +17,17 @@ class ProductGallery extends Model
      * @var string[]
      */
     protected $fillable = [
-        'product_id',
+        'products_id',
         'url',
     ];
 
     public function product()
     {
-        return $this->belongsTo(Product::class, 'product_id', 'id');
+        return $this->belongsTo(Product::class, 'products_id', 'id');
     }
 
-    public function getUrlAttribute()
+    public function getUrlAttribute($url)
     {
-        return config('app.url') . Storage::url($this->url);
+        return config('app.url') . Storage::url($url);
     }
 }

@@ -19,17 +19,17 @@ class Product extends Model
         'name',
         'description',
         'price',
-        'category_id',
+        'categories_id',
         'tags',
     ];
 
     public function category()
     {
-        return $this->belongsTo(ProductCategory::class, 'category_id', 'id');
+        return $this->belongsTo(ProductCategory::class, 'categories_id', 'id');
     }
 
     public function galleries()
     {
-        return $this->hasMany(ProductGallery::class, 'product_id', 'id');
+        return $this->hasMany(ProductGallery::class, 'products_id', 'id');
     }
 }

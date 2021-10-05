@@ -22,51 +22,51 @@ class ProductController extends Controller
         $price_to = $request->input('price_to');
 
         if ($id) {
-            $product = Product::with(['category', 'galleries'])->find($id);
+            $data = Product::with(['category', 'galleries'])->find($id);
 
-            if ($product) {
+            if ($data) {
                 return ResponseFormatter::success(
-                    $product,
-                    'Data Product Berhasil Diambil'
+                    $data,
+                    'Data Retrieved Successfully'
                 );
             } else {
                 return ResponseFormatter::error(
                     null,
-                    'Tidak Ada Data',
+                    'Sorry, No Data',
                     404
                 );
             }
         }
 
-        $product = Product::with(['category', 'galleries']);
+        $data = Product::with(['category', 'galleries']);
 
         if ($name) {
-            $product->where('name', 'like', '%' .$name. '%');
+            $data->where('name', 'like', '%' .$name. '%');
         }
 
         if ($description) {
-            $product->where('description', 'like', '%' .$description. '%');
+            $data->where('description', 'like', '%' .$description. '%');
         }
 
         if ($tags) {
-            $product->where('tags', 'like', '%' .$tags. '%');
+            $data->where('tags', 'like', '%' .$tags. '%');
         }
 
         if ($price_from) {
-            $product->where('price', '>=', $price_from);
+            $data->where('price', '>=', $price_from);
         }
 
         if ($price_to) {
-            $product->where('price', '>=', $price_to);
+            $data->where('price', '<=', $price_to);
         }
 
         if ($categories) {
-            $product->where('category', '>=', $categories);
+            $data->where('category', '>=', $categories);
         }
 
         return ResponseFormatter::success(
-            $product->paginate($limit),
-            'Data Produk berhasil diambil'
+            $data->paginate($limit),
+            'Data Retrieved Successfully'
         );
 
     }

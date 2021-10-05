@@ -15,19 +15,19 @@ class TransactionItem extends Model
      * @var string[]
      */
     protected $fillable = [
-        'user_id',
-        'product_id',
-        'transaction_id',
+        'users_id',
+        'products_id',
+        'transactions_id',
         'quantity'
     ];
 
     public function transaction()
     {
-        return $this->belongsTo(Transaction::class, 'transaction_id', 'id');
+        return $this->belongsTo(Transaction::class, 'transactions_id', 'id');
     }
 
     public function product()
     {
-        return $this->hasOne(Product::class, 'product_id', 'id');
+        return $this->hasOne(Product::class, 'products_id', 'id');
     }
 }
