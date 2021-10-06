@@ -12,7 +12,7 @@ class ProductController extends Controller
     public function all(Request $request)
     {
         $id = $request->input('id');
-        $limit = $request->input('limit');
+        $limit = $request->input('limit', 5);
         $name = $request->input('name');
         $description = $request->input('description');
         $tags = $request->input('tags');
@@ -61,7 +61,7 @@ class ProductController extends Controller
         }
 
         if ($categories) {
-            $data->where('category', '>=', $categories);
+            $data->where('categories_id', $categories);
         }
 
         return ResponseFormatter::success(

@@ -18,14 +18,14 @@ class UserSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        for ($i=0; $i < 20; $i++) { 
+        for ($i=0; $i < 2; $i++) { 
             User::insert([
                 'name' => $faker->name,
                 'username' => $faker->userName,
                 'email' => $faker->email,
                 'password' => Hash::make('password'),
                 'phone' => $faker->phoneNumber,
-            ]);
+            ]); 
         }
     }
 }
